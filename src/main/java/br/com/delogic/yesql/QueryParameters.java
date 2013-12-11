@@ -6,14 +6,14 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SqlQueryParameters {
+public class QueryParameters {
 
     private String[]            orderByKey;
     private Long                startRow;
     private Long                endRow;
     private Map<String, Object> parameters;
 
-    private Logger              logger = Logger.getLogger(SqlQueryParameters.class.getName());
+    private Logger              logger = Logger.getLogger(QueryParameters.class.getName());
 
     /**
      * Will add the parameter with its key to the query only if the value is not
@@ -22,7 +22,7 @@ public class SqlQueryParameters {
      * @param key
      * @param value
      */
-    public SqlQueryParameters(String key, Object value) {
+    public QueryParameters(String key, Object value) {
         addParameter(key, value);
     }
 
@@ -33,11 +33,11 @@ public class SqlQueryParameters {
      * @param key
      * @param values
      */
-    public SqlQueryParameters(String key, Object... values) {
+    public QueryParameters(String key, Object... values) {
         addParameter(key, values);
     }
 
-    public SqlQueryParameters() {}
+    public QueryParameters() {}
 
     public String[] getOrderByKey() {
         return orderByKey;
@@ -79,7 +79,7 @@ public class SqlQueryParameters {
      * @param value
      * @return
      */
-    public SqlQueryParameters addParameter(String key, Object value) {
+    public QueryParameters addParameter(String key, Object value) {
         if (value == null) {
             logger.log(Level.WARNING, "Could not add empty value for key:" + key);
             return this;
@@ -99,7 +99,7 @@ public class SqlQueryParameters {
      * @param value
      * @return
      */
-    public SqlQueryParameters addParameter(String key, Enum<?> value) {
+    public QueryParameters addParameter(String key, Enum<?> value) {
         if (value == null) {
             logger.log(Level.WARNING, "Could not add null value for key:" + key);
             return this;
@@ -115,7 +115,7 @@ public class SqlQueryParameters {
      * @param values
      * @return
      */
-    public SqlQueryParameters addParameter(String key, Object... values) {
+    public QueryParameters addParameter(String key, Object... values) {
         if (values == null || values.length == 0) {
             logger.log(Level.WARNING, "Could not add empty values for key:" + key);
             return this;
@@ -123,7 +123,7 @@ public class SqlQueryParameters {
         return addParameter(key, Arrays.asList(values));
     }
 
-    public SqlQueryParameters activateParameter(String key) {
+    public QueryParameters activateParameter(String key) {
         return addParameter(key, "");
     }
 

@@ -6,21 +6,12 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestSqlQuery extends Assert {
-
-    // @Inject
-    // private DataSource dataSource;
-    //
-    // @Inject
-    // private ApplicationContext applicationContext;
-    //
-    // @Inject
-    // @Named("sqlQueryTest1")
-    // private SqlQuery<Date> dateQuery;
+public class TestQuery extends Assert {
 
     @Test
     public void testComposeQuery() {
-        SqlQuery<Object> query = new SqlQuery<Object>();
+
+        Query<String> query = new Query<String>();
         query.setSelect("col1, col2, col3");
         query.setFrom("tab1 tb1 inner join tab2 tb2 on tb1.id = tb2.id");
 
@@ -60,28 +51,5 @@ public class TestSqlQuery extends Assert {
             query.composeQuery(null));
 
     }
-
-    // @Test
-    // public void testGetList() {
-    // SqlQuery<Date> query = new SqlQuery<Date>();
-    // query.setSelect("sysdate()");
-    // query.setFrom("dual");
-    // query.setReturnType(Date.class);
-    //
-    // query.setDataSource(dataSource);
-    // applicationContext.getAutowireCapableBeanFactory().initializeBean(query,
-    // "sqlqueryTest1");
-    //
-    // List<Date> dates = query.getList();
-    // assertNotNull(dates);
-    // assertTrue(dates.size() == 1);
-    // }
-    //
-    // @Test
-    // public void testGetListBeanInjected() {
-    // List<Date> dates = dateQuery.getList();
-    // assertNotNull(dates);
-    // assertTrue(dates.size() == 1);
-    // }
 
 }

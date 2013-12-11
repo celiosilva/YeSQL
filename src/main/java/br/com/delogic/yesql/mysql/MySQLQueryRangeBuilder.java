@@ -1,11 +1,11 @@
 package br.com.delogic.yesql.mysql;
 
-import br.com.delogic.yesql.SqlQueryParameters;
-import br.com.delogic.yesql.SqlQueryRangeBuilder;
+import br.com.delogic.yesql.QueryParameters;
+import br.com.delogic.yesql.QueryRangeBuilder;
 
-public class MySQLSqlQueryRangeBuilder implements SqlQueryRangeBuilder {
+public class MySQLQueryRangeBuilder implements QueryRangeBuilder {
 
-    public String buildRangeQuery(String query, SqlQueryParameters configuration) {
+    public String buildRangeQuery(String query, QueryParameters configuration) {
         long startRow = configuration.getStartRow() != null ? configuration.getStartRow() : 0;
         long endRow = configuration.getEndRow() != null ? configuration.getEndRow() : Long.MAX_VALUE;
 
