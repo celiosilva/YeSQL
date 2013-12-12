@@ -3,6 +3,12 @@ package br.com.delogic.yesql.oracle;
 import br.com.delogic.yesql.QueryParameters;
 import br.com.delogic.yesql.QueryRangeBuilder;
 
+/**
+ * Will return the query with start row and end row for Oracle database.
+ *
+ * @author celio@delogic.com.br
+ *
+ */
 public class OracleQueryRangeBuilder implements QueryRangeBuilder {
 
     private static final String RANGE_QUERY =

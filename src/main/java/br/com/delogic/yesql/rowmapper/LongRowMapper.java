@@ -5,6 +5,13 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
+/**
+ * Row mapper created to return lists of Long values.
+ *
+ * @author celio@delogic.com.br
+ *
+ * @param <E>
+ */
 public class LongRowMapper<E> implements RowMapper<E> {
 
     @SuppressWarnings("unchecked")

@@ -531,7 +531,7 @@ public class Query<T> implements InitializingBean {
     }
 
     /**
-     * Returns the and statements of this {@code Query}
+     * Returns the "and" statements of this {@code Query}
      *
      * @return Map with all the statements
      */
@@ -539,6 +539,11 @@ public class Query<T> implements InitializingBean {
         return and;
     }
 
+    /**
+     * Sets the and parameters into this {@code Query}
+     *
+     * @param andParam
+     */
     public void setAnd(Map<String, String> andParam) {
         if (and == null) {
             and = new HashMap<String, String>();
@@ -565,89 +570,202 @@ public class Query<T> implements InitializingBean {
         }
     }
 
+    /**
+     * Gets the select statement
+     *
+     * @return
+     */
     public String getSelect() {
         return select;
     }
 
+    /**
+     * Sets the select statement
+     *
+     * @param select
+     */
     public void setSelect(String select) {
         this.select = select;
     }
 
+    /**
+     * Gets the from statement
+     *
+     * @return
+     */
     public String getFrom() {
         return from;
     }
 
+    /**
+     * Sets the from statement
+     *
+     * @param from
+     */
     public void setFrom(String from) {
         this.from = from;
     }
 
+    /**
+     * Gets the where statement
+     *
+     * @return
+     */
     public String getWhere() {
         return where;
     }
 
+    /**
+     * Sets the where statement
+     *
+     * @param where
+     */
     public void setWhere(String where) {
         this.where = where;
     }
 
+    /**
+     * Gets the group by statement
+     *
+     * @return
+     */
     public String getGroupBy() {
         return groupBy;
     }
 
+    /**
+     * Sets the group by statement
+     *
+     * @param groupBy
+     */
     public void setGroupBy(String groupBy) {
         this.groupBy = groupBy;
     }
 
+    /**
+     * Gets the order by statement
+     *
+     * @return
+     */
     public String getOrderBy() {
         return orderBy;
     }
 
+    /**
+     * Sets the order by statement
+     *
+     * @param orderBy
+     */
     public void setOrderBy(String orderBy) {
         this.orderBy = orderBy;
     }
 
+    /**
+     * Gets the return type for this query result
+     *
+     * @return
+     */
     public Class<T> getReturnType() {
         return returnType;
     }
 
+    /**
+     * Sets the return type for this query result
+     *
+     * @param returnType
+     */
     public void setReturnType(Class<T> returnType) {
         this.returnType = returnType;
     }
 
+    /**
+     * Gets the datasource
+     *
+     * @return
+     */
     public DataSource getDataSource() {
         return dataSource;
     }
 
+    /**
+     * Sets the datasource
+     *
+     * @param dataSource
+     */
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
+    /**
+     * Gets the dynamic orders statements
+     *
+     * @return
+     */
     public Map<String, String> getOrders() {
         return orders;
     }
 
+    /**
+     * Sets the dynamic orders statements
+     *
+     * @param multiOrderBy
+     */
     public void setOrders(Map<String, String> multiOrderBy) {
         this.orders = multiOrderBy;
     }
 
+    /**
+     * Gets the query range builder
+     *
+     * @return
+     */
     public QueryRangeBuilder getRangeBuilder() {
         return rangeBuilder;
     }
 
+    /**
+     * Sets the query range builder
+     *
+     * @param rangeBuilder
+     */
     public void setRangeBuilder(QueryRangeBuilder rangeBuilder) {
         this.rangeBuilder = rangeBuilder;
     }
 
+    /**
+     * Gets the registered parameter types
+     *
+     * @return
+     */
     Map<String, PermittedParameterType> getRegisteredParameters() {
         return registeredParameters;
     }
 
+    /**
+     * Sets the registered parameter types
+     *
+     * @return
+     */
     Map<String, PermittedParameterType> getMandatoryParameters() {
         return mandatoryParameters;
     }
 
+    /**
+     * Enum with the permitted parameter types. These types are mostly created
+     * for testing purposes. Whith the correct type mapped it's possible to
+     * generate tests for all statements testing this query with all
+     * possibilities.
+     *
+     * @author celio@delogic.com.br
+     *
+     */
     public enum PermittedParameterType {
-        number(1), date(new Date()), text("text"), bool(Boolean.TRUE), numberslist(Arrays.asList(1, 2, 3)), textslist(Arrays.asList(
-            "text1", "text2"));
+        number(1),
+        date(new Date()),
+        text("text"),
+        bool(Boolean.TRUE),
+        numberslist(Arrays.asList(1, 2, 3)),
+        textslist(Arrays.asList("text1", "text2"));
 
         private final Object example;
 
@@ -657,7 +775,7 @@ public class Query<T> implements InitializingBean {
 
         public static String stringValues() {
             return Arrays.toString(values());
-        };
+        }
 
         public static PermittedParameterType fromName(String type) {
             return PermittedParameterType.valueOf(type);
@@ -669,12 +787,22 @@ public class Query<T> implements InitializingBean {
 
     }
 
+    /**
+     * Initializes this query via Spring configuration when it's declared as an
+     * Spring bean
+     */
     public void afterPropertiesSet() throws Exception {
         maybeInitializeQuery();
     }
 
 }
 
+/**
+ * Utilities class
+ *
+ * @author celio@delogic.com.br
+ *
+ */
 class f {
 
     /**

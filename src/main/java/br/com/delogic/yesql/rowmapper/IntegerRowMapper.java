@@ -5,6 +5,13 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
+/**
+ * Row mapper created to return Lists of Integer values.
+ *
+ * @author celio@delogic.com.br
+ *
+ * @param <E>
+ */
 public class IntegerRowMapper<E> implements RowMapper<E> {
 
     @SuppressWarnings("unchecked")
