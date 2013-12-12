@@ -3,7 +3,6 @@ package br.com.delogic.yesql;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.junit.Test;
 import org.springframework.util.Assert;
 
 import br.com.delogic.yesql.Query.PermittedParameterType;
@@ -11,7 +10,6 @@ import br.com.delogic.yesql.Query.PermittedParameterType;
 public class QueryTester {
 
     @SuppressWarnings("rawtypes")
-    @Test
     public void testAllQueries(Map<String, Query> beans) {
         Assert.isTrue(!beans.isEmpty());
 

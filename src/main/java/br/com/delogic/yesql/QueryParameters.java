@@ -3,8 +3,9 @@ package br.com.delogic.yesql;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Parameters which can be sent into the query's {@code getList} method,
@@ -35,7 +36,7 @@ public class QueryParameters {
      */
     private Map<String, Object> parameters;
 
-    private Logger              logger = Logger.getLogger(QueryParameters.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(QueryParameters.class);
 
     /**
      * Will add the parameter with its key to the query only if the value is not
@@ -146,7 +147,9 @@ public class QueryParameters {
      */
     public QueryParameters addParameter(String key, Object value) {
         if (value == null) {
-            logger.log(Level.WARNING, "Could not add empty value for key:" + key);
+            if (logger.isInfoEnabled()) {
+                logger.info("Could not add empty value for key:" + key);
+            }
             return this;
         }
         if (parameters == null) {
@@ -166,7 +169,9 @@ public class QueryParameters {
      */
     public QueryParameters addParameter(String key, Enum<?> value) {
         if (value == null) {
-            logger.log(Level.WARNING, "Could not add null value for key:" + key);
+            if (logger.isInfoEnabled()) {
+                logger.info("Could not add null value for key:" + key);
+            }
             return this;
         }
         return addParameter(key, value.name());
@@ -183,7 +188,9 @@ public class QueryParameters {
      */
     public QueryParameters addParameter(String key, Object... values) {
         if (values == null || values.length == 0) {
-            logger.log(Level.WARNING, "Could not add empty values for key:" + key);
+            if (logger.isInfoEnabled()) {
+                logger.info("Could not add empty values for key:" + key);
+            }
             return this;
         }
         return addParameter(key, Arrays.asList(values));

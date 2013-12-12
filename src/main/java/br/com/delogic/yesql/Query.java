@@ -14,7 +14,8 @@ import java.util.regex.Pattern;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -152,8 +153,12 @@ public class Query<T> implements InitializingBean {
     @Inject
     private DataSource                          dataSource;
 
-    private Logger                              logger                 = Logger.getLogger(Query.class);
     private boolean                             initialized            = false;
+
+    /**
+     * Logger using slf4j facade
+     */
+    private static final Logger                 logger                 = LoggerFactory.getLogger(Query.class);
 
     /**
      * Will initialize the {@code Query} object using the required statements:
@@ -821,15 +826,6 @@ class f {
         } else {
             return obj1.equals(obj2);
         }
-    }
-
-    public static final <E> boolean notNull(E... es) {
-        for (E e : es) {
-            if (e == null) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public static final <E> boolean notEmpty(E... es) {
